@@ -167,6 +167,44 @@ const LocalResource = {
       return await this.jadwalByOnline(id) || await this.jadwalByLocal(parseInt(id));
     },
 
+    async nilaiListKey() {
+      const db = await dbPromise;
+      const tx = db.transaction('nilai', 'readonly');
+      const store = tx.objectStore('nilai');
+      return store.getAllKeys();
+    },
+
+    async nilaiList() {
+      const db = await dbPromise;
+      const tx = db.transaction('nilai', 'readonly');
+      const store = tx.objectStore('nilai');
+      return store.getAll();
+    },
+
+    async nilaiSemesterList(semester) {
+      const list = await this.nilaiList();
+      return list.filter((nilai) => nilai.semester === semester);
+    },
+
+    async nilaiByLocal(id) {
+      const db = await dbPromise;
+      const tx = db.transaction('nilai', 'readonly');
+      const store = tx.objectStore('nilai');
+      return store.get(id);
+    },
+
+    async nilaiByOnline(id) {
+      const db = await dbPromise;
+      const tx = db.transaction('nilai', 'readonly');
+      const store = tx.objectStore('nilai');
+      const index = store.index('_id');
+      return index.get(id);
+    },
+
+    async nilai(id) {
+      return await this.nilaiByOnline(id) || await this.nilaiByLocal(parseInt(id));
+    },
+
     async resolusiList() {
       const db = await dbPromise;
       const tx = db.transaction('resolusi', 'readonly');
@@ -254,6 +292,14 @@ const LocalResource = {
       return store.put(jadwal);
     },
 
+    async nilai(nilai) {
+      const db = await dbPromise;
+      const tx = db.transaction('nilai', 'readwrite');
+      const store = tx.objectStore('nilai');
+
+      return store.put(nilai);
+    },
+
     async resolusi(resolusi) {
       const db = await dbPromise;
       const tx = db.transaction('resolusi', 'readwrite');
@@ -310,6 +356,24 @@ const LocalResource = {
       const index = store.index('_id');
       const jadwal = await index.get(id);
       if (jadwal) return this.jadwalByLocal(jadwal.local_id);
+      return undefined;
+    },
+
+    async nilaiByLocal(id) {
+      id = parseInt(id);
+      const db = await dbPromise;
+      const tx = db.transaction('nilai', 'readwrite');
+      const store = tx.objectStore('nilai');
+      return store.delete(id);
+    },
+
+    async nilaiByOnline(id) {
+      const db = await dbPromise;
+      const tx = db.transaction('nilai', 'readwrite');
+      const store = tx.objectStore('nilai');
+      const index = store.index('_id');
+      const nilai = await index.get(id);
+      if (nilai) return this.nilaiByLocal(nilai.local_id);
       return undefined;
     },
 

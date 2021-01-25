@@ -38,6 +38,7 @@ const CONFIG = {
       PELAJARAN: 25,
     },
     JADWAL: 20,
+    NILAI: 20,
   },
 };
 

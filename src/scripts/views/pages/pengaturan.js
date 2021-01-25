@@ -88,6 +88,17 @@ const pengaturan = {
           min: 0,
           max: 100,
         },
+        inputValidator: (input) => new Promise((resolve) => {
+          if (input === '') {
+            resolve('Input tidak boleh kosong');
+          }
+
+          if (input > 100 || input < 0) {
+            resolve('Nilai tidak sesuai.');
+          }
+
+          resolve();
+        }),
         showCancelButton: true,
         confirmButtonColor: '#4caf50',
       });
@@ -119,6 +130,17 @@ const pengaturan = {
         inputAttributes: {
           min: 0,
         },
+        inputValidator: (input) => new Promise((resolve) => {
+          if (input === '') {
+            resolve('Input tidak boleh kosong');
+          }
+
+          if (input < 0) {
+            resolve('Semester tidak sesuai.');
+          }
+
+          resolve();
+        }),
         showCancelButton: true,
         confirmButtonColor: '#4caf50',
       });

@@ -74,8 +74,9 @@ const Tugas = {
         const localList = await LocalResource.get.tugasList();
         await localList.forEach(async (local) => {
           if (!('_id' in local)) {
+            const localId = local.local_id;
             const result = await OnlineResource.put.tugas(local);
-            await LocalResource.delete.tugasByLocal(local.local_id);
+            await LocalResource.delete.tugasByLocal(localId);
             await LocalResource.put.tugas(result);
           }
         });

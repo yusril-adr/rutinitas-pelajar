@@ -86,8 +86,9 @@ const Jadwal = {
         const localList = await LocalResource.get.jadwalList();
         await localList.forEach(async (local) => {
           if (!('_id' in local)) {
+            const localId = local.local_id;
             const result = await OnlineResource.put.jadwal(local);
-            await LocalResource.delete.jadwalByLocal(local.local_id);
+            await LocalResource.delete.jadwalByLocal(localId);
             await LocalResource.put.jadwal(result);
           }
         });

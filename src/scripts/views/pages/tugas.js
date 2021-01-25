@@ -169,6 +169,7 @@ const tugas = {
     const button = document.querySelector('button.tambah');
     button.addEventListener('click', async (event) => {
       event.stopPropagation();
+
       const result = await Swal.mixin({
         input: 'text',
         confirmButtonText: 'Next &rarr;',

@@ -74,8 +74,9 @@ const Resolusi = {
         const localList = await LocalResource.get.resolusiList();
         await localList.forEach(async (local) => {
           if (!('_id' in local)) {
+            const localId = local.local_id;
             const result = await OnlineResource.put.resolusi(local);
-            await LocalResource.delete.resolusiByLocal(local.local_id);
+            await LocalResource.delete.resolusiByLocal(localId);
             await LocalResource.put.resolusi(result);
           }
         });

@@ -367,14 +367,6 @@ const createNilaiPageTemplate = () => `
                 </div>
                 <hr>
               </li>
-
-              <li>
-                <div class="rekap">
-                  <span class="rekap-kategori">Nilai keseluruhan</span>
-                  <span class="nilai-rekap">80</span>
-                </div>
-                <hr>
-              </li>
             </ul>
           </div>
         </div>
@@ -471,75 +463,15 @@ const createNilaiPageTemplate = () => `
   </button>
 `;
 
-const createNilaiVerbPageTemplate = () => `
+const createNilaiVerbPageTemplate = (semester) => `
   <section class="container">
     <div class="row">
       <div class="col s12 m6 offset-m3">
         <div class="card">
           <div class="card-content">
-            <span class="card-title">Semester <span class="verb">1</span></span>
+            <span class="card-title">Semester <span class="verb">${semester}</span></span>
 
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <div class="detail-pelajaran">
-                    <span class="nama-pelajaran">Lorem ipsum dolor sit id.</span>
-                    <span class="nilai-pelajaran">80</span>
-                  </div>
-                  
-      
-                  <div class="pelajaran-action">
-                    <button class="ubah" pelajaran-id="a">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button class="hapus" pelajaran-id="a">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </div>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <div class="detail-pelajaran">
-                    <span class="nama-pelajaran">Lorem ipsum dolor sit id.</span>
-                    <span class="nilai-pelajaran">80</span>
-                  </div>
-                  
-      
-                  <div class="pelajaran-action">
-                    <button class="ubah" pelajaran-id="a">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button class="hapus" pelajaran-id="a">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </div>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <div class="detail-pelajaran">
-                    <span class="nama-pelajaran">Lorem ipsum dolor sit id.</span>
-                    <span class="nilai-pelajaran">80</span>
-                  </div>
-                  
-      
-                  <div class="pelajaran-action">
-                    <button class="ubah" pelajaran-id="a">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button class="hapus" pelajaran-id="a">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </div>
-                </div>
-                <hr>
-              </li>
-            </ul>
+            <ul class="list-pelajaran"></ul>
 
             <div class="card-action">
               <button class="tambah waves-effect waves-light btn green" aria-label="Tambah pelajaran"><i class="material-icons left">add</i> Tambah</button>
@@ -550,9 +482,29 @@ const createNilaiVerbPageTemplate = () => `
     </div>
   </section>
 
-  <button class="hapus btn-floating btn-large waves-effect waves-light red" aria-label="Hapus semester ini">
+  <button class="hapus-semester btn-floating btn-large waves-effect waves-light red" aria-label="Hapus semester ini">
     <i class="material-icons">delete</i>
   </button>
+`;
+
+const createNilaiVerbNilaiTemplate = (nilai) => `
+  <div class="pelajaran">
+    <div class="detail-pelajaran">
+      <span class="nama-pelajaran">${nilai.nama}</span>
+      <span class="nilai-pelajaran">${nilai.nilai}</span>
+    </div>
+    
+
+    <div class="pelajaran-action">
+      <button class="ubah" pelajaran-id="${nilai.local_id || nilai._id}">
+        <i class="material-icons">edit</i>
+      </button>
+      <button class="hapus" pelajaran-id="${nilai.local_id || nilai._id}">
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
+  </div>
+  <hr>
 `;
 
 const createResolusiPageTemplate = () => `
@@ -739,6 +691,7 @@ export {
   createJadwalVerbPelajaranTemplate,
   createNilaiPageTemplate,
   createNilaiVerbPageTemplate,
+  createNilaiVerbNilaiTemplate,
   createResolusiPageTemplate,
   createResolusiBelumTemplate,
   createResolusiTercapaiTemplate,

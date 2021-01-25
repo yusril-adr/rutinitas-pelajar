@@ -95,7 +95,7 @@ const jadwalVerb = {
                   resolve('Input tidak boleh kosong');
                 }
 
-                if (input.length > 23 || input.length < 0) {
+                if (input > 23 || input < 0) {
                   resolve('Jam tidak sesuai.');
                 }
 
@@ -114,7 +114,7 @@ const jadwalVerb = {
                   resolve('Input tidak boleh kosong');
                 }
 
-                if (input.length > 59 || input.length < 0) {
+                if (input > 59 || input < 0) {
                   resolve('Menit tidak sesuai.');
                 }
 
@@ -169,9 +169,9 @@ const jadwalVerb = {
             icon: 'success',
             confirmButtonColor: '#4caf50',
           });
+          FullLoadingInitiator.remove();
         }
 
-        FullLoadingInitiator.remove();
         this._renderList();
       });
     });
@@ -226,7 +226,7 @@ const jadwalVerb = {
                 resolve('Input tidak boleh kosong');
               }
 
-              if (input.length > 23 || input.length < 0) {
+              if (input > 23 || input < 0) {
                 resolve('Jam tidak sesuai.');
               }
 
@@ -269,9 +269,8 @@ const jadwalVerb = {
           await Jadwal.putPelajaran(newPelajaran);
           await this._renderList();
         }
-
-        FullLoadingInitiator.remove();
       }
+      FullLoadingInitiator.remove();
     });
   },
 };

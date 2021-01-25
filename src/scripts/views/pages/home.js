@@ -18,6 +18,8 @@ const home = {
     const params = new URLSearchParams(location.search);
     if (await User.isLogin() && params.has('masuk')) {
       await SyncronInitiator.init();
+      // eslint-disable-next-line no-undef
+      await M.toast({ html: 'Sinkronisasi berhasil' });
       location.href = location.pathname;
     }
   },

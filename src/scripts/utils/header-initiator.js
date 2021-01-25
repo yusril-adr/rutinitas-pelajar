@@ -47,6 +47,7 @@ const HeaderInitiator = {
   async _setSyncronEvent() {
     const button = document.querySelector('button#sinkron');
 
+    // eslint-disable-next-line consistent-return
     button.addEventListener('click', async (event) => {
       event.stopPropagation();
       await FullLoadingInitiator.init();
@@ -61,8 +62,22 @@ const HeaderInitiator = {
         await SyncronInitiator.init();
 
         await FullLoadingInitiator.remove();
+
         // eslint-disable-next-line no-undef
-        return M.toast({ html: 'Sinkronisasi berhasil' });
+        await M.toast({ html: 'Sinkronisasi berhasil' });
+
+        const reload = await Swal.fire({
+          title: 'Muat ulang ?',
+          text: 'Beberapa perubahan mungkin memerlukannya.',
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#4caf50',
+          cancelButtonColor: '#f44336',
+          confirmButtonText: 'Iya',
+          cancelButtonText: 'Tidak',
+        });
+
+        if (reload.isConfirmed) location.reload();
       } catch ({ message }) {
         await FullLoadingInitiator.remove();
         // eslint-disable-next-line no-undef

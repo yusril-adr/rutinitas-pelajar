@@ -179,6 +179,45 @@ const OnlineResource = {
       }
     },
 
+    async nilaiList() {
+      try {
+        const request = await fetch(API_ENDPOINT.NILAI);
+        const response = await request.json();
+        if (response.status === 'error') return new Error(response.message);
+
+        return response.result;
+      } catch (error) {
+        return error;
+      }
+    },
+
+    async nilaiSemesterList(semester) {
+      try {
+        const request = await fetch(API_ENDPOINT.NILAI);
+        const response = await request.json();
+        if (response.status === 'error') return new Error(response.message);
+
+        const list = response.result;
+        return list.filter((nilai) => nilai.semester === semester);
+      } catch (error) {
+        return error;
+      }
+    },
+
+    async nilai(id) {
+      try {
+        const request = await fetch(API_ENDPOINT.NILAI);
+        const response = await request.json();
+        if (response.status === 'error') return new Error(response.message);
+
+        const list = response.result;
+        const filteredList = await list.filter((nilai) => nilai._id === id);
+        return filteredList[0];
+      } catch (error) {
+        return error;
+      }
+    },
+
     async resolusiList() {
       try {
         const request = await fetch(API_ENDPOINT.RESOLUSI);
@@ -345,6 +384,31 @@ const OnlineResource = {
       }
     },
 
+    async nilai(newNilai) {
+      try {
+        if (('local_id' in newNilai)) delete newNilai.local_id;
+
+        const requestOptions = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newNilai),
+        };
+
+        if (('_id' in newNilai)) requestOptions.headers.id = newNilai._id;
+
+        const request = await fetch(API_ENDPOINT.NILAI, requestOptions);
+
+        const response = await request.json();
+        if (response.status === 'error') return new Error(response.message);
+
+        return response.result;
+      } catch (error) {
+        return error;
+      }
+    },
+
     async resolusi(newResolusi) {
       try {
         if (('local_id' in newResolusi)) delete newResolusi.local_id;
@@ -394,6 +458,25 @@ const OnlineResource = {
     async jadwal(id) {
       try {
         const request = await fetch(API_ENDPOINT.JADWAL, {
+          method: 'DELETE',
+          headers: {
+            id,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const response = await request.json();
+        if (response.status === 'error') return new Error(response.message);
+
+        return response.result;
+      } catch (error) {
+        return error;
+      }
+    },
+
+    async nilai(id) {
+      try {
+        const request = await fetch(API_ENDPOINT.NILAI, {
           method: 'DELETE',
           headers: {
             id,
