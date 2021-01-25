@@ -18,14 +18,14 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'tugas',
   }],
-  jadwal: {
+  jadwal: [{
     type: Schema.Types.ObjectId,
     ref: 'jadwal',
-  },
-  nilai: {
+  }],
+  nilai: [{
     type: Schema.Types.ObjectId,
     ref: 'nilai',
-  },
+  }],
   resolusi: [{
     type: Schema.Types.ObjectId,
     ref: 'resolusi',

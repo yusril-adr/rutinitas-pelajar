@@ -5,11 +5,9 @@ const nilaiSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'user',
   },
-  list: [{
-    nama: String,
-    nilai: Number,
-    semester: String,
-  }],
+  nama: String,
+  nilai: Number,
+  semester: Number,
 });
 
 module.exports = nilaiSchema;

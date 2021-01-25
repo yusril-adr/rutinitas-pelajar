@@ -24,20 +24,18 @@ router.route('/tugas')
   .delete(ApiHelper.arrayField.delete('tugas', { Model: Tugas, User }).exec);
 
 router.route('/jadwal')
-  .get(ApiHelper.jadwal.get(Jadwal, User).exec)
-  .post(ApiHelper.jadwal.post(Jadwal).exec)
-  .put(ApiHelper.jadwal.put(Jadwal).exec)
-  .patch(ApiHelper.jadwal.patch(Jadwal).exec)
-  .delete(ApiHelper.jadwal.delete(Jadwal).exec);
+  .get(ApiHelper.arrayField.get(Jadwal).exec)
+  .post(ApiHelper.arrayField.post('jadwal', { Model: Jadwal, User }).exec)
+  .put(ApiHelper.arrayField.put('jadwal', { Model: Jadwal, User }).exec)
+  .patch(ApiHelper.arrayField.patch(Jadwal).exec)
+  .delete(ApiHelper.arrayField.delete('jadwal', { Model: Jadwal, User }).exec);
 
 router.route('/nilai')
-  .get(ApiHelper.nilai.get(Nilai, User).exec)
-  .post(ApiHelper.nilai.post(Nilai).exec)
-  .put(ApiHelper.nilai.put(Nilai).exec)
-  .patch(ApiHelper.nilai.patch(Nilai).exec)
-  .delete(ApiHelper.nilai.delete(Nilai).exec);
-
-router.get('/nilai/:semester', (ApiHelper.nilai.semester(Nilai).exec));
+  .get(ApiHelper.arrayField.get(Nilai).exec)
+  .post(ApiHelper.arrayField.post('nilai', { Model: Nilai, User }).exec)
+  .put(ApiHelper.arrayField.put('nilai', { Model: Nilai, User }).exec)
+  .patch(ApiHelper.arrayField.patch(Nilai).exec)
+  .delete(ApiHelper.arrayField.delete('nilai', { Model: Nilai, User }).exec);
 
 router.route('/pengaturan')
   .get(ApiHelper.pengaturan.get().exec)
