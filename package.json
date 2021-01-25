@@ -1,0 +1,82 @@
+{
+  "name": "rutinitas-pelajar",
+  "version": "1.0.0",
+  "description": "Membantu mengatur rutinitas kamu sebagai pelajar",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "build-dev": "webpack --config webpack.dev.js",
+    "build-dev-start": "webpack --config webpack.dev.js && node server.js",
+    "build-start": "webpack --config webpack.prod.js && node server.js",
+    "build-server": "webpack --config webpack.prod.js && nodemon server.js",
+    "build-server-dev": "webpack --config webpack.dev.js && nodemon server.js",
+    "graph": "git log --all --oneline --text --decorate --graph",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusril-adr/rutinitas-pelajar.git"
+  },
+  "keywords": [
+    "pelajar",
+    "rutinitas",
+    "manajemen",
+    "resolusi"
+  ],
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 4 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ],
+  "author": "Yusril A. P.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yusril-adr/rutinitas-pelajar/issues"
+  },
+  "homepage": "https://github.com/yusril-adr/rutinitas-pelajar#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "autoprefixer": "^10.2.1",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^7.0.0",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.1",
+    "mini-css-extract-plugin": "^1.3.4",
+    "nodemon": "^2.0.7",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss": "^8.2.4",
+    "postcss-loader": "^4.1.0",
+    "sass": "^1.32.4",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.15.0",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "idb": "^6.0.0",
+    "material-design-icons": "^3.0.1",
+    "materialize-css": "^1.0.0",
+    "mongoose": "^5.11.12",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local-mongoose": "^6.1.0",
+    "sweetalert2": "^10.13.0"
+  }
+}
