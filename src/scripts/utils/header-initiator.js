@@ -52,15 +52,21 @@ const HeaderInitiator = {
       await FullLoadingInitiator.init();
 
       try {
+        if (!navigator.onLine) {
+          await FullLoadingInitiator.remove();
+          // eslint-disable-next-line no-undef
+          return M.toast({ html: 'Sinkronisasi gagal, karena anda sedang offline.' });
+        }
+
         await SyncronInitiator.init();
 
         await FullLoadingInitiator.remove();
         // eslint-disable-next-line no-undef
-        M.toast({ html: 'Sinkronisasi berhasil' });
+        return M.toast({ html: 'Sinkronisasi berhasil' });
       } catch ({ message }) {
         await FullLoadingInitiator.remove();
         // eslint-disable-next-line no-undef
-        M.toast({ html: message });
+        return M.toast({ html: message });
       }
     });
   },

@@ -73,6 +73,8 @@ const LocalResource = {
     const list = {
       id: 0,
       tugas: [],
+      jadwal: [],
+      nilai: [],
       resolusi: [],
     };
 
@@ -134,14 +136,26 @@ const LocalResource = {
       return await this.tugasByOnline(id) || await this.tugasByLocal(parseInt(id));
     },
 
-    async jadwalListByLocal() {
+    async jadwalList() {
       const db = await dbPromise;
       const tx = db.transaction('jadwal', 'readonly');
       const store = tx.objectStore('jadwal');
-      return store.get(0);
+      return store.getAll();
     },
 
-    async jadwalListByOnline(id) {
+    async jadwalDayList(day) {
+      const list = await this.jadwalList();
+      return list.filter((jadwal) => jadwal.hari.toLowerCase() === day.toLowerCase());
+    },
+
+    async jadwalByLocal(id) {
+      const db = await dbPromise;
+      const tx = db.transaction('jadwal', 'readonly');
+      const store = tx.objectStore('jadwal');
+      return store.get(id);
+    },
+
+    async jadwalByOnline(id) {
       const db = await dbPromise;
       const tx = db.transaction('jadwal', 'readonly');
       const store = tx.objectStore('jadwal');
@@ -149,22 +163,8 @@ const LocalResource = {
       return index.get(id);
     },
 
-    async jadwalList({ id = undefined } = {}) {
-      return await this.jadwalListByOnline(parseInt(id)) || await this.jadwalListByLocal();
-    },
-
-    async jadwalDayList({ day, id = undefined }) {
-      const list = await this.jadwalList({ id });
-      return list[day];
-    },
-
-    async pelajaranInJadwal({ id_pelajaran, day, id_list }) {
-      const dayList = await this.jadwalDayList({ day, id_list });
-      // eslint-disable-next-line arrow-body-style
-      const filteredList = dayList.filter((pelajaran) => {
-        return pelajaran._id === id_pelajaran || pelajaran.local_id === id_pelajaran;
-      });
-      return filteredList[0];
+    async jadwal(id) {
+      return await this.jadwalByOnline(id) || await this.jadwalByLocal(parseInt(id));
     },
 
     async resolusiList() {
@@ -246,6 +246,14 @@ const LocalResource = {
       return store.put(tugas);
     },
 
+    async jadwal(jadwal) {
+      const db = await dbPromise;
+      const tx = db.transaction('jadwal', 'readwrite');
+      const store = tx.objectStore('jadwal');
+
+      return store.put(jadwal);
+    },
+
     async resolusi(resolusi) {
       const db = await dbPromise;
       const tx = db.transaction('resolusi', 'readwrite');
@@ -284,6 +292,24 @@ const LocalResource = {
       const index = store.index('_id');
       const tugas = await index.get(id);
       if (tugas) return this.tugasByLocal(tugas.local_id);
+      return undefined;
+    },
+
+    async jadwalByLocal(id) {
+      id = parseInt(id);
+      const db = await dbPromise;
+      const tx = db.transaction('jadwal', 'readwrite');
+      const store = tx.objectStore('jadwal');
+      return store.delete(id);
+    },
+
+    async jadwalByOnline(id) {
+      const db = await dbPromise;
+      const tx = db.transaction('jadwal', 'readwrite');
+      const store = tx.objectStore('jadwal');
+      const index = store.index('_id');
+      const jadwal = await index.get(id);
+      if (jadwal) return this.jadwalByLocal(jadwal.local_id);
       return undefined;
     },
 

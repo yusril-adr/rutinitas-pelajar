@@ -19,6 +19,13 @@ const createEmptyListTemplate = (listName) => `
   </div>
 `;
 
+const createPelajaranEmptyTemplate = () => `
+  <hr>
+  <div class="pelajaran-empty">
+    <h2>Tidak ada pelajaran</h2>
+  </div>
+`;
+
 const createFullLoadingTemplate = () => `
   <div class="container loading-container center-align">
     <div class="preloader-wrapper big active">
@@ -258,284 +265,37 @@ const createTugasSelesaiTemplate = (tugas) => `
 `;
 
 const createJadwalPageTemplate = () => `
-  <section class="container">
-    <div class="row">
-      <div class="col s12 m6" id="senin">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Senin <a href="/jadwal/senin" class="material-icons" aria-label="ubah">edit</a></span>
-
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6" id="selasa">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Selasa <a href="/jadwal/selasa" class="material-icons" aria-label="ubah">edit</a></span>
-
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6" id="rabu">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Rabu <a href="/jadwal/rabu" class="material-icons" aria-label="ubah">edit</a></span>
-
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6" id="kamis">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Kamis <a href="/jadwal/kamis" class="material-icons" aria-label="ubah">edit</a></span>
-
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6" id="jumat">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Jum'at <a href="/jadwal/jumat" class="material-icons" aria-label="ubah">edit</a></span>
-
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6" id="sabtu">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Sabtu <a href="/jadwal/sabtu" class="material-icons" aria-label="ubah">edit</a></span>
-
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="jam-pelajaran">07.00 AM</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="container list">
   </section>
 `;
 
-const createJadwalVerbPageTemplate = () => `
-  <section class="container">
+const createJadwalDayTemplate = (day) => `
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">${day.toUpperCase()} <a href="/jadwal/${day.toLowerCase()}" class="material-icons" aria-label="ubah">edit</a></span>
+
+      <ul class="list-pelajaran"></ul>
+    </div>
+  </div>
+`;
+
+const createJadwalPelajaranTemplate = (pelajaran) => `
+  <div class="pelajaran">
+    <span class="nama-pelajaran">${pelajaran.nama}</span>
+    <span class="jam-pelajaran">${pelajaran.jam}</span>
+  </div>
+  <hr> 
+`;
+
+const createJadwalVerbPageTemplate = (day) => `
+  <section class="container list">
     <div class="row">
       <div class="col s12 m6 offset-m3">
         <div class="card">
           <div class="card-content">
-            <span class="card-title">Senin</span>
+            <span class="card-title">${day.toUpperCase()}</span>
 
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <div class="detail-pelajaran">
-                    <span class="nama-pelajaran">Lorem ipsum dolor sit id.</span>
-                    <span class="jam-pelajaran">07.00 AM</span>
-                  </div>
-                  
-      
-                  <div class="pelajaran-action">
-                    <button class="ubah" pelajaran-id="a">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button class="hapus" pelajaran-id="a">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </div>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <div class="detail-pelajaran">
-                    <span class="nama-pelajaran">Lorem ipsum dolor sit id.</span>
-                    <span class="jam-pelajaran">07.00 AM</span>
-                  </div>
-                  
-      
-                  <div class="pelajaran-action">
-                    <button class="ubah" pelajaran-id="a">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button class="hapus" pelajaran-id="a">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </div>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <div class="detail-pelajaran">
-                    <span class="nama-pelajaran">Lorem ipsum dolor sit id.</span>
-                    <span class="jam-pelajaran">07.00 AM</span>
-                  </div>
-                  
-      
-                  <div class="pelajaran-action">
-                    <button class="ubah" pelajaran-id="a">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button class="hapus" pelajaran-id="a">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </div>
-                </div>
-                <hr>
-              </li>
-            </ul>
+            <ul class="list-pelajaran"></ul>
 
             <div class="card-action">
               <button class="tambah waves-effect waves-light btn green" aria-label="Tambah pelajaran"><i class="material-icons left">add</i> Tambah</button>
@@ -545,6 +305,26 @@ const createJadwalVerbPageTemplate = () => `
       </div>
     </div>
   </section>
+`;
+
+const createJadwalVerbPelajaranTemplate = (pelajaran) => `
+  <div class="pelajaran">
+    <div class="detail-pelajaran">
+      <span class="nama-pelajaran">${pelajaran.nama}</span>
+      <span class="jam-pelajaran">${pelajaran.jam}</span>
+    </div>
+    
+
+    <div class="pelajaran-action">
+      <button class="ubah" pelajaran-id="${pelajaran.local_id || pelajaran._id}" aria-label="ubah pelajaran">
+        <i class="material-icons">edit</i>
+      </button>
+      <button class="hapus" pelajaran-id="${pelajaran.local_id || pelajaran._id}" aria-label="hapus pelajaran">
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
+  </div>
+  <hr>
 `;
 
 const createNilaiPageTemplate = () => `
@@ -952,7 +732,11 @@ export {
   createTugasBelumTemplate,
   createTugasSelesaiTemplate,
   createJadwalPageTemplate,
+  createJadwalDayTemplate,
+  createJadwalPelajaranTemplate,
+  createPelajaranEmptyTemplate,
   createJadwalVerbPageTemplate,
+  createJadwalVerbPelajaranTemplate,
   createNilaiPageTemplate,
   createNilaiVerbPageTemplate,
   createResolusiPageTemplate,

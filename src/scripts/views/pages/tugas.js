@@ -214,12 +214,6 @@ const tugas = {
         [newTugas.tugas, newTugas.pelajaran] = result.value;
 
         const deadline = await Swal.mixin({
-          inputValidator: (value) => new Promise((resolve) => {
-            if (value === '') {
-              resolve('Input tidak boleh kosong');
-            }
-            resolve();
-          }),
           confirmButtonText: 'Next &rarr;',
           confirmButtonColor: '#4caf50',
           showCancelButton: true,
@@ -233,6 +227,17 @@ const tugas = {
               min: 1,
               max: 31,
             },
+            inputValidator: (input) => new Promise((resolve) => {
+              if (input === '') {
+                resolve('Input tidak boleh kosong');
+              }
+
+              if (input.length > 31 || input.length < 1) {
+                resolve('Tanggal tidak sesuai.');
+              }
+
+              resolve();
+            }),
           },
           {
             title: 'Bulan',
@@ -252,11 +257,23 @@ const tugas = {
               November: 'November',
               Desember: 'Desember',
             },
+            inputValidator: (value) => new Promise((resolve) => {
+              if (value === '') {
+                resolve('Input tidak boleh kosong');
+              }
+              resolve();
+            }),
           },
           {
             title: 'Tahun',
             input: 'number',
             inputValue: new Date().getFullYear(),
+            inputValidator: (value) => new Promise((resolve) => {
+              if (value === '') {
+                resolve('Input tidak boleh kosong');
+              }
+              resolve();
+            }),
           },
         ]);
 

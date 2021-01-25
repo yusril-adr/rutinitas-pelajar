@@ -8,7 +8,7 @@ const CONFIG = {
     'selasa',
     'rabu',
     'kamis',
-    'jumat',
+    'jum\'at',
     'sabtu',
   ],
   SESSION_OPTIONS: {
