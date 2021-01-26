@@ -23,6 +23,9 @@
     "manajemen",
     "resolusi"
   ],
+  "engines": {
+    "node": "14.x"
+  },
   "browserslist": [
     "defaults",
     "not ie < 11",
