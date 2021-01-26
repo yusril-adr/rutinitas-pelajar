@@ -3,6 +3,8 @@ const CONFIG = {
     NAME: 'Rutinitas Pelajar',
     VERSION: 1,
   },
+  CACHE_NAME: 'Utilities',
+  CACHE_EXP: 30 * 24 * 60 * 60, // 30 Days
   DATE: {
     DAY: [
       'Senin',

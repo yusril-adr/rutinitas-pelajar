@@ -14,10 +14,14 @@ class App {
   }
 
   async _initialAppShell() {
+    const page = UrlParser.parseActiveUrlWithoutCombiner().resource;
+
     HeaderInitiator.init({
       header: this._header,
-      page: UrlParser.parseActiveUrlWithoutCombiner().resource,
+      page,
     });
+
+    if (page === 'index') location.href = '/';
 
     if (!(await User.isExist())) await User.syncronUser();
     await this._changeContentClass();

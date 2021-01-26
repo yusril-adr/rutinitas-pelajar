@@ -401,6 +401,11 @@ main.nilai {
     }
   }
 
+  .list-rekap,
+  .list-pelajaran {
+    min-height: 150px;
+  }
+
   .rekap,
   .pelajaran {
     display: flex;

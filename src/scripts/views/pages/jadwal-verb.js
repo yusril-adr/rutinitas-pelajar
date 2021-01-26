@@ -24,6 +24,9 @@ const jadwalVerb = {
   async _renderList() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const { verb: day } = url;
+    const dayName = CONFIG.DATE.DAY.filter((name) => name !== 'Minggu');
+    const lowerCaseDayName = dayName.map((name) => name.toLowerCase());
+    if (!(lowerCaseDayName.includes(day))) location.pathname = '/jadwal/';
 
     const listElement = document.querySelector('.list-pelajaran');
     const listPelajaran = await Jadwal.getDayList(day);
