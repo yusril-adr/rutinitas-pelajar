@@ -55,7 +55,7 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: `http://localhost:${CONFIG.PORT}/masuk/google`,
+  callbackURL: process.env.CALLBACK_URL || `http://localhost:${CONFIG.PORT}/masuk/google`,
 }, (accessToken, refreshToken, profile, cb) => {
   const { _json: user } = profile;
 

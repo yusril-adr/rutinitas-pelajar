@@ -3,6 +3,7 @@ import Nilai from '../../data/nilai';
 import CONFIG from '../../global/config';
 import UrlParser from '../../routes/url-parser';
 import FullLoadingInitiator from '../../utils/full-loading-initiator';
+import NilaiHelper from '../../utils/nilai-helper';
 import {
   createPelajaranEmptyTemplate,
   createNilaiVerbPageTemplate,
@@ -17,9 +18,18 @@ const nilaiVerb = {
   },
 
   async afterRender() {
+    await this._checkSemester();
     await this._renderList();
     await this._initAddBtn();
     await this._initDeleteSemesterBtn();
+  },
+
+  async _checkSemester() {
+    const url = UrlParser.parseActiveUrlWithoutCombiner();
+    const semester = parseInt(url.verb);
+    const semesterBaru = (await NilaiHelper.getSemesterNow()) + 1;
+
+    if (semester > semesterBaru || semester <= 0) location.pathname = '/nilai/';
   },
 
   async _renderList() {
@@ -28,7 +38,6 @@ const nilaiVerb = {
 
     const listElement = document.querySelector('.list-pelajaran');
     const listNilai = await Nilai.getNilaiSemester(semester);
-    console.log(listNilai);
 
     listElement.innerHTML = '';
     if (listNilai.length > 0) {

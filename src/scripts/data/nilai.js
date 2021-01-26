@@ -2,6 +2,16 @@ import OnlineResource from './online-resource';
 import LocalResource from './local-resource-idb';
 
 const Nilai = {
+  async getAllNilai() {
+    if (navigator.onLine && await OnlineResource.isLogin()) {
+      // eslint-disable-next-line arrow-body-style
+      return OnlineResource.get.nilaiList();
+    }
+
+    // eslint-disable-next-line arrow-body-style
+    return LocalResource.get.nilaiList();
+  },
+
   async getNilaiSemester(semester) {
     if (navigator.onLine && await OnlineResource.isLogin()) {
       // eslint-disable-next-line arrow-body-style

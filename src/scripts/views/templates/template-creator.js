@@ -328,139 +328,73 @@ const createJadwalVerbPelajaranTemplate = (pelajaran) => `
 `;
 
 const createNilaiPageTemplate = () => `
-  <section class="container">
-    <div class="row">
-      <div class="col s12 m6 offset-m3" id="rekap">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Rekap</span>
-
-            <ul class="list-rekap">
-              <li>
-                <div class="rekap">
-                  <span class="rekap-kategori">Target nilai semester ini</span>
-                  <span class="nilai-rekap">80</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="rekap">
-                  <span class="rekap-kategori">Total nilai sekarang</span>
-                  <span class="nilai-rekap">80</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="rekap">
-                  <span class="rekap-kategori">Target nilai keseluruhan</span>
-                  <span class="nilai-rekap">80</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="rekap">
-                  <span class="rekap-kategori">Target semester</span>
-                  <span class="nilai-rekap">5</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6 offset-m3" id="semester-2">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Semester 2 <a href="/nilai/2" class="material-icons" aria-label="ubah">edit</a></span>
-
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="nilai-pelajaran">100</span>
-                </div>
-                <hr>
-              </li>
-              
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Struktur Data</span>
-                  <span class="nilai-pelajaran">90</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Basis Data</span>
-                  <span class="nilai-pelajaran">80</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="rekap">
-                  <span class="rekap-kategori">Nilai Total</span>
-                  <span class="nilai-rekap">90</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6 offset-m3" id="semester-1">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Semester 1 <a href="/nilai/1" class="material-icons" aria-label="ubah">edit</a></span>
-
-            <ul class="list-pelajaran">
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Program Dasar</span>
-                  <span class="nilai-pelajaran">100</span>
-                </div>
-                <hr>
-              </li>
-              
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Struktur Data</span>
-                  <span class="nilai-pelajaran">90</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="pelajaran">
-                  <span class="nama-pelajaran">Basis Data</span>
-                  <span class="nilai-pelajaran">80</span>
-                </div>
-                <hr>
-              </li>
-
-              <li>
-                <div class="rekap">
-                  <span class="rekap-kategori">Nilai Total</span>
-                  <span class="nilai-rekap">90</span>
-                </div>
-                <hr>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="container list">
   </section>
 
   <button class="tambah btn-floating btn-large waves-effect waves-light green" aria-label="Senester Baru">
     <i class="material-icons">add</i>
   </button>
+`;
+
+const createNilaiRekapTemplate = (rekap) => `
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Rekap</span>
+
+      <ul class="list-rekap">
+        <li>
+          <div class="rekap">
+            <span class="rekap-kategori">Target nilai semester ini</span>
+            <span class="nilai-rekap">${rekap.target.nilai_now > 100 ? '<span class="red-text">-</span>' : rekap.target.nilai_now.toFixed(2)}</span>
+          </div>
+          <hr>
+        </li>
+
+        <li>
+          <div class="rekap">
+            <span class="rekap-kategori">Total nilai sekarang</span>
+            <span class="nilai-rekap">${rekap.total_nilai.toFixed(2) || 0}</span>
+          </div>
+          <hr>
+        </li>
+
+        <li>
+          <div class="rekap">
+            <span class="rekap-kategori">Target nilai keseluruhan</span>
+            <span class="nilai-rekap">${rekap.target.nilai.toFixed(2)}</span>
+          </div>
+          <hr>
+        </li>
+
+        <li>
+          <div class="rekap">
+            <span class="rekap-kategori">Target semester</span>
+            <span class="nilai-rekap">${rekap.target.semester}</span>
+          </div>
+          <hr>
+        </li>
+      </ul>
+    </div>
+  </div>
+`;
+
+const createNilaiSemesterTemplate = (semester) => `
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Semester ${semester} <a href="/nilai/${semester}" class="material-icons" aria-label="ubah">edit</a></span>
+
+      <ul class="list-pelajaran">
+      </ul>
+    </div>
+  </div>
+`;
+
+const createNilaiPelajaranTemplate = (pelajaran) => `
+  <div class="pelajaran">
+    <span class="nama-pelajaran">${pelajaran.nama}</span>
+    <span class="nilai-pelajaran">${pelajaran.nilai.toFixed(2)}</span>
+  </div>
+  <hr>
 `;
 
 const createNilaiVerbPageTemplate = (semester) => `
@@ -491,7 +425,7 @@ const createNilaiVerbNilaiTemplate = (nilai) => `
   <div class="pelajaran">
     <div class="detail-pelajaran">
       <span class="nama-pelajaran">${nilai.nama}</span>
-      <span class="nilai-pelajaran">${nilai.nilai}</span>
+      <span class="nilai-pelajaran">${nilai.nilai.toFixed(2)}</span>
     </div>
     
 
@@ -690,6 +624,9 @@ export {
   createJadwalVerbPageTemplate,
   createJadwalVerbPelajaranTemplate,
   createNilaiPageTemplate,
+  createNilaiRekapTemplate,
+  createNilaiSemesterTemplate,
+  createNilaiPelajaranTemplate,
   createNilaiVerbPageTemplate,
   createNilaiVerbNilaiTemplate,
   createResolusiPageTemplate,

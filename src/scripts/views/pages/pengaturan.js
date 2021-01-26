@@ -23,7 +23,7 @@ const pengaturan = {
     const pengaturanValue = pengaturanBaru || await User.getPengaturan();
     const { target_nilai, target_semester } = await pengaturanValue;
 
-    document.querySelector('#target-nilai').innerHTML = await target_nilai;
+    document.querySelector('#target-nilai').innerHTML = (await target_nilai).toFixed(2);
     document.querySelector('#target-semester').innerHTML = await target_semester;
   },
 
