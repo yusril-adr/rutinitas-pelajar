@@ -24,6 +24,7 @@ const pengaturan = {
   async _renderValue(pengaturanBaru = undefined) {
     const pengaturanValue = pengaturanBaru || await User.getPengaturan();
     const { target_nilai, target_semester } = await pengaturanValue;
+    console.log(pengaturanValue);
 
     document.querySelector('#target-nilai').innerHTML = (await target_nilai).toFixed(2);
     document.querySelector('#target-semester').innerHTML = await target_semester;
@@ -261,8 +262,8 @@ const pengaturan = {
       event.stopPropagation();
 
       const defaultValue = {
-        nilai: document.querySelector('#target-nilai').innerHTML,
-        semester: document.querySelector('#target-semester').innerHTML,
+        nilai: parseInt(document.querySelector('#target-nilai').innerHTML),
+        semester: parseInt(document.querySelector('#target-semester').innerHTML),
       };
 
       const { value, isDismissed } = await Swal.fire({
@@ -290,12 +291,16 @@ const pengaturan = {
 
       if (!isDismissed) {
         const pengaturanBaru = {
-          target_nilai: value || defaultValue.nilai,
+          target_nilai: parseInt(value) || defaultValue.nilai,
           target_semester: defaultValue.semester,
         };
 
-        await this._renderValue(pengaturanBaru);
-        await User.updatePengaturan(pengaturanBaru);
+        await FullLoadingInitiator.init();
+
+        const updatedPengaturan = await User.updatePengaturan(pengaturanBaru);
+        await this._renderValue(updatedPengaturan);
+
+        FullLoadingInitiator.remove();
       }
     });
 
@@ -304,8 +309,8 @@ const pengaturan = {
       event.stopPropagation();
 
       const defaultValue = {
-        nilai: document.querySelector('#target-nilai').innerHTML,
-        semester: document.querySelector('#target-semester').innerHTML,
+        nilai: parseInt(document.querySelector('#target-nilai').innerHTML),
+        semester: parseInt(document.querySelector('#target-semester').innerHTML),
       };
 
       const { value } = await Swal.fire({
@@ -332,11 +337,15 @@ const pengaturan = {
 
       const pengaturanBaru = {
         target_nilai: defaultValue.nilai,
-        target_semester: value || defaultValue.semester,
+        target_semester: parseInt(value) || defaultValue.semester,
       };
 
-      await this._renderValue(pengaturanBaru);
-      await User.updatePengaturan(pengaturanBaru);
+      await FullLoadingInitiator.init();
+
+      const updatedPengaturan = await User.updatePengaturan(pengaturanBaru);
+      await this._renderValue(updatedPengaturan);
+
+      FullLoadingInitiator.remove();
     });
   },
 };
