@@ -15,9 +15,7 @@ router.route('/')
   .get(renderDefaultPage)
   .post(async (request, response) => {
     const { username, password } = request.body;
-    const user = new User({ username, password });
-
-    request.login(user, (error) => {
+    User.register({ username }, password, (error, user) => {
       if (error) {
         return sendError(error.message, response);
       }

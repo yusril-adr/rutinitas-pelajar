@@ -4,15 +4,14 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { User } = require('./scripts/data/model');
 const CONFIG = require('./scripts/global/config');
-const ModelHelper = require('./scripts/util/model-helper');
 const db = require('./scripts/data/mongodb-connection');
 const indexRoute = require('./scripts/routes/index');
 const jadwalRoute = require('./scripts/routes/jadwal');
 const nilaiRoute = require('./scripts/routes/nilai');
 const masukRoute = require('./scripts/routes/masuk');
+const daftarRoute = require('./scripts/routes/daftar');
 const apiRoute = require('./scripts/routes/api');
 const { redirectToHome } = require('./scripts/util/response-helper');
 
@@ -41,38 +40,9 @@ app.use(session(CONFIG.SESSION_OPTIONS));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
-});
-
-// Google Oauth
-passport.use(new GoogleStrategy({
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: process.env.CALLBACK_URL || `http://localhost:${CONFIG.PORT}/masuk/google`,
-}, (accessToken, refreshToken, profile, cb) => {
-  const { _json: user } = profile;
-
-  ModelHelper.findOrCreateWithCallback({
-    filter: {
-      google_id: user.sub,
-    },
-    data: {
-      username: user.email,
-      display_name: user.given_name,
-      google_id: user.sub,
-    },
-  }, {
-    Model: User,
-    callback: cb,
-  });
-}));
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
@@ -88,6 +58,7 @@ db.once('open', () => {
   app.use('/jadwal', jadwalRoute);
   app.use('/nilai', nilaiRoute);
   app.use('/masuk', masukRoute);
+  app.use('/daftar', daftarRoute);
   app.use('/api', apiRoute);
 
   app.get('/keluar', (request, response) => {

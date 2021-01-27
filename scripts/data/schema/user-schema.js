@@ -1,9 +1,10 @@
 const { Schema } = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new Schema({
   username: String,
   display_name: String,
-  google_id: String,
+  password: String,
   pengaturan: {
     target_nilai: {
       type: Number,
@@ -31,5 +32,7 @@ const userSchema = new Schema({
     ref: 'resolusi',
   }],
 });
+
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = userSchema;
