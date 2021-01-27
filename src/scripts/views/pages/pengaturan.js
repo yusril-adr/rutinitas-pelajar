@@ -24,7 +24,6 @@ const pengaturan = {
   async _renderValue(pengaturanBaru = undefined) {
     const pengaturanValue = pengaturanBaru || await User.getPengaturan();
     const { target_nilai, target_semester } = await pengaturanValue;
-    console.log(pengaturanValue);
 
     document.querySelector('#target-nilai').innerHTML = (await target_nilai).toFixed(2);
     document.querySelector('#target-semester').innerHTML = await target_semester;
