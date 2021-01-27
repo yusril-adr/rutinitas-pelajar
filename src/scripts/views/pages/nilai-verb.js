@@ -41,7 +41,6 @@ const nilaiVerb = {
 
     listElement.innerHTML = '';
     if (listNilai.length > 0) {
-      console.log(listNilai)
       await listNilai.forEach(async (nilai) => {
         const nilaiElement = document.createElement('li');
         nilaiElement.innerHTML = createNilaiVerbNilaiTemplate(nilai);
