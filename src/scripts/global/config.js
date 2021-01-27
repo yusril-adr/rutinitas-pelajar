@@ -41,6 +41,7 @@ const CONFIG = {
     },
     JADWAL: 20,
     NILAI: 20,
+    DISPLAY_NAME: 15,
   },
 };
 

@@ -1,6 +1,8 @@
 const API_ENDPOINT = {
-  ALL: '/api/user/complete/',
-  USER: '/api/user/',
+  MASUK: '/masuk',
+  DAFTAR: '/daftar',
+  ALL: '/api/user/complete',
+  USER: '/api/user',
   TUGAS: '/api/tugas',
   JADWAL: '/api/jadwal',
   NILAI: '/api/nilai',

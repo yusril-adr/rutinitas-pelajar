@@ -24,6 +24,14 @@ const User = {
     return LocalResource.get.pengaturan();
   },
 
+  async daftar(user) {
+    return OnlineResource.daftar(user);
+  },
+
+  async logIn(user) {
+    return OnlineResource.login(user);
+  },
+
   async logOut() {
     await this._initLocalUser();
     location.href = '/keluar';

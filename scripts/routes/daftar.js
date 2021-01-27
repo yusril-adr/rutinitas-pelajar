@@ -14,13 +14,17 @@ router.use((request, response, next) => {
 router.route('/')
   .get(renderDefaultPage)
   .post(async (request, response) => {
-    const { username, password } = request.body;
-    User.register({ username }, password, (error, user) => {
+    const { username, password, display_name } = request.body;
+    User.register({ username }, password, async (error, user) => {
       if (error) {
         return sendError(error.message, response);
       }
 
-      return passport.authenticate('local')(request, response, () => sendAPIRespond({ respond: user, response }));
+      const updatedUser = await User.findByIdAndUpdate(user._id, {
+        $set: { display_name },
+      });
+
+      return passport.authenticate('local')(request, response, () => sendAPIRespond({ respond: updatedUser, response }));
     });
   });
 

@@ -1,5 +1,7 @@
 import Swal from 'sweetalert2';
+import CONFIG from '../../global/config';
 import User from '../../data/user';
+import FullLoadingInitiator from '../../utils/full-loading-initiator';
 import {
   createPengaturanPageTemplate,
   createMasukButtonTemplate,
@@ -31,10 +33,193 @@ const pengaturan = {
     const container = document.querySelector('.card-action');
     container.innerHTML = createMasukButtonTemplate();
 
-    const button = document.querySelector('#masuk');
-    button.addEventListener('click', (event) => {
+    const masukBtn = document.querySelector('button.masuk');
+    masukBtn.addEventListener('click', async (event) => {
       event.stopPropagation();
-      location.href = '/masuk';
+
+      if (navigator.onLine) {
+        const { value } = await Swal.mixin({
+          confirmButtonText: 'Next &rarr;',
+          confirmButtonColor: '#4caf50',
+          showCancelButton: true,
+          progressSteps: ['1', '2'],
+        }).queue([
+          {
+            title: 'Email',
+            input: 'email',
+            inputPlaceholder: 'Email kamu ...',
+          },
+          {
+            title: 'Password',
+            input: 'password',
+            inputPlaceholder: 'Password kamu ...',
+            inputAttributes: {
+              minlength: 8,
+              autocapitalize: 'off',
+              autocorrect: 'off',
+            },
+            inputValidator: (input) => new Promise((resolve) => {
+              if (input === '') {
+                resolve('Input tidak boleh kosong');
+              }
+
+              if (input.length < 8) {
+                resolve('Password minimal 8 digit.');
+              }
+
+              resolve();
+            }),
+          },
+        ]);
+
+        if (value) {
+          const [email, password] = value;
+
+          const user = {
+            username: email,
+            password,
+          };
+
+          const loginStatus = await User.logIn(user);
+
+          if (loginStatus === 'error') {
+            await Swal.fire({
+              title: 'Error !',
+              text: 'Cek kembali username dan password kamu',
+              icon: 'error',
+              confirmButtonColor: '#4caf50',
+            });
+          } else {
+            await FullLoadingInitiator.init();
+            location.href = '/?masuk';
+          }
+        }
+      } else {
+        await Swal.fire({
+          title: 'Kamu sedang offline !',
+          text: 'Koneksi internet diperlukan.',
+          icon: 'error',
+          confirmButtonColor: '#4caf50',
+        });
+      }
+    });
+
+    const daftarBtn = document.querySelector('button.daftar');
+    daftarBtn.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      if (navigator.onLine) {
+        const { value } = await Swal.mixin({
+          confirmButtonText: 'Next &rarr;',
+          confirmButtonColor: '#4caf50',
+          showCancelButton: true,
+          progressSteps: ['1', '2', '3', '4'],
+        }).queue([
+          {
+            title: 'Nama',
+            input: 'text',
+            inputPlaceholder: 'Nama kamu ...',
+            inputValidator: (input) => new Promise((resolve) => {
+              if (input === '') {
+                resolve('Input tidak boleh kosong');
+              }
+
+              if (input.length > CONFIG.TEXT_LIMIT.DISPLAY_NAME) {
+                resolve('Text terlalu panjang.');
+              }
+
+              resolve();
+            }),
+          },
+          {
+            title: 'Email',
+            input: 'email',
+            inputPlaceholder: 'Email kamu ...',
+          },
+          {
+            title: 'Password',
+            input: 'password',
+            inputPlaceholder: 'Password kamu ...',
+            inputAttributes: {
+              minlength: 8,
+              autocapitalize: 'off',
+              autocorrect: 'off',
+            },
+            inputValidator: (input) => new Promise((resolve) => {
+              if (input === '') {
+                resolve('Input tidak boleh kosong');
+              }
+
+              if (input.length < 8) {
+                resolve('Password minimal 8 digit.');
+              }
+
+              resolve();
+            }),
+          },
+          {
+            title: 'Konfirmasi Password',
+            input: 'password',
+            inputPlaceholder: 'Konfirmasi password kamu ...',
+            inputAttributes: {
+              minlength: 8,
+              autocapitalize: 'off',
+              autocorrect: 'off',
+            },
+            inputValidator: (input) => new Promise((resolve) => {
+              if (input === '') {
+                resolve('Input tidak boleh kosong');
+              }
+
+              if (input.length < 8) {
+                resolve('Password minimal 8 digit.');
+              }
+
+              resolve();
+            }),
+          },
+        ]);
+
+        if (value) {
+          const [display_name, email, password, confirmPassword] = value;
+
+          if (password === confirmPassword) {
+            const user = {
+              display_name,
+              username: email,
+              password,
+            };
+
+            const daftarStatus = await User.daftar(user);
+
+            if (daftarStatus === 'error') {
+              await Swal.fire({
+                title: 'Error !',
+                text: 'Cek kembali username dan password kamu',
+                icon: 'error',
+                confirmButtonColor: '#4caf50',
+              });
+            } else {
+              await FullLoadingInitiator.init();
+              location.href = '/?masuk';
+            }
+          } else {
+            await Swal.fire({
+              title: 'Gagal !',
+              text: 'Password tidak sama dengan konfirmasi',
+              icon: 'error',
+              confirmButtonColor: '#4caf50',
+            });
+          }
+        }
+      } else {
+        await Swal.fire({
+          title: 'Kamu sedang offline !',
+          text: 'Koneksi internet diperlukan.',
+          icon: 'error',
+          confirmButtonColor: '#4caf50',
+        });
+      }
     });
   },
 

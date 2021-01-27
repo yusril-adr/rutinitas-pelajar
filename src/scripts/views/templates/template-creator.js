@@ -9,7 +9,11 @@ const createSideNavUserTemplate = (user) => `
   <span class="white-text">${user.username}</span>
 `;
 
-const createSideNavLoginBtnTemplate = () => '<span class="masuk"><a href="/masuk">Masuk dengan google</a></span>';
+const createSideNavLoginBtnTemplate = () => `
+<div class="masuk-login-container">
+  <button class="waves-effect" id="masuk">Masuk</button> | <button class="waves-effect" id="daftar">Daftar</button>
+</div>
+`;
 
 const createBackNavTemplate = () => '<i class="material-icons">arrow_back</i>';
 
@@ -590,14 +594,18 @@ const createPengaturanPageTemplate = () => `
 `;
 
 const createMasukButtonTemplate = () => `
-  <button class="waves-effect waves-light btn green" aria-label="Masuk Akun" id="masuk">
-    <i class="material-icons left">account_circle</i> Masuk
+  <button class="masuk waves-effect waves-light btn green" aria-label="Masuk Akun">
+    <i class="material-icons left">lock</i> Masuk
+  </button>
+
+  <button class="daftar waves-effect waves-light btn blue" aria-label="Daftar Akun Baru">
+    <i class="material-icons left">lock_outline</i> Daftar
   </button>
 `;
 
 const createKeluarButtonTemplate = () => `
   <button class="keluar waves-effect waves-light btn red" aria-label="Keluar Akun" id="keluar">
-    <i class="material-icons left">account_circle</i> Keluar
+    <i class="material-icons left">lock_open</i> Keluar
   </button>
 `;
 

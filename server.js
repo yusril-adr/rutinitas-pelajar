@@ -63,7 +63,7 @@ db.once('open', () => {
 
   app.get('/keluar', (request, response) => {
     request.logOut();
-    return response.redirect('/?keluar=true');
+    return response.redirect('/?keluar');
   });
 
   app.get('/:resource', redirectToHome);
