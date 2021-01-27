@@ -3,7 +3,7 @@ import Nilai from '../data/nilai';
 
 const NilaiHelper = {
   async getSemesterValue(list) {
-    const generatedList = list || await Nilai.getAllNilai();
+    const generatedList = list || await Nilai.getAllNilai() || [];
     const semesterList = [];
     generatedList.forEach((nilai) => {
       if (!semesterList.includes(nilai.semester)) semesterList.push(nilai.semester);
@@ -13,9 +13,10 @@ const NilaiHelper = {
   },
 
   async getSemesterNow(list = undefined) {
-    if (list) return Math.max(...(await this.getSemesterValue(list)));
-    const generatedList = await Nilai.getAllNilai();
-    return Math.max(...(await this.getSemesterValue(generatedList)));
+    if (list && list.length > 0) return Math.max(...(await this.getSemesterValue(list)));
+    const generatedList = await Nilai.getAllNilai() || [];
+    if (generatedList.length > 0) return Math.max(...(await this.getSemesterValue(generatedList)));
+    return Math.max(generatedList);
   },
 
   async getRekap(list = undefined) {
@@ -35,7 +36,7 @@ const NilaiHelper = {
   },
 
   async _getTotalNilai(list = undefined) {
-    const listNilai = list || await Nilai.getAllNilai();
+    const listNilai = list || await Nilai.getAllNilai() || [];
     const total = await listNilai.reduce((a, b) => a + (b.nilai || 0), 0);
 
     const mean = total / listNilai.length;

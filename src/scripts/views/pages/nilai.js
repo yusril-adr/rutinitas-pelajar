@@ -73,8 +73,8 @@ const nilai = {
       const semesterNow = await NilaiHelper.getSemesterNow(listNilai);
       const availableSemester = [];
 
-      for (let i = 1; i <= (semesterNow + 1); i += 1) {
-        availableSemester.push(i);
+      for (let i = 0; i <= (semesterNow + 1); i += 1) {
+        if (i !== 0) availableSemester.push(i);
       }
 
       const { value } = await Swal.fire({
