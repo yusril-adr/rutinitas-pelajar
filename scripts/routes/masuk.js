@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 const { User } = require('../data/model');
-const { renderDefaultPage, sendAPIRespond, sendError } = require('../util/response-helper');
+const { sendAPIRespond, sendError } = require('../util/response-helper');
 
 const router = express.Router();
 
@@ -11,19 +11,17 @@ router.use((request, response, next) => {
   return next();
 });
 
-router.route('/')
-  .get(renderDefaultPage)
-  .post(async (request, response) => {
-    const { username, password } = request.body;
-    const user = new User({ username, password });
+router.post(('/'), async (request, response) => {
+  const { username, password } = request.body;
+  const user = new User({ username, password });
 
-    request.login(user, (error) => {
-      if (error) {
-        return sendError(error.message, response);
-      }
+  request.login(user, (error) => {
+    if (error) {
+      return sendError(error.message, response);
+    }
 
-      return passport.authenticate('local')(request, response, () => sendAPIRespond({ respond: user, response }));
-    });
+    return passport.authenticate('local')(request, response, () => sendAPIRespond({ respond: user, response }));
   });
+});
 
 module.exports = router;
