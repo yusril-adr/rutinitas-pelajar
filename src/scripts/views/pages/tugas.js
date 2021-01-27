@@ -215,13 +215,14 @@ const tugas = {
         [newTugas.tugas, newTugas.pelajaran] = result.value;
 
         const deadline = await Swal.mixin({
+          title: 'Deadline',
           confirmButtonText: 'Next &rarr;',
           confirmButtonColor: '#4caf50',
           showCancelButton: true,
           progressSteps: ['1', '2', '3'],
         }).queue([
           {
-            title: 'Tanggal',
+            text: 'Tanggal',
             input: 'number',
             inputValue: new Date().getDate(),
             inputAttributes: {
@@ -241,7 +242,7 @@ const tugas = {
             }),
           },
           {
-            title: 'Bulan',
+            text: 'Bulan',
             input: 'select',
             inputValue: CONFIG.DATE.MONTH[new Date().getMonth()],
             inputOptions: {
@@ -266,7 +267,7 @@ const tugas = {
             }),
           },
           {
-            title: 'Tahun',
+            text: 'Tahun',
             input: 'number',
             inputValue: new Date().getFullYear(),
             inputValidator: (value) => new Promise((resolve) => {
