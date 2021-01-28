@@ -171,18 +171,18 @@ const HeaderInitiator = {
               password,
             };
 
-            const loginStatus = await User.logIn(user);
+            try {
+              await User.logIn(user);
 
-            if (loginStatus === 'error') {
+              await FullLoadingInitiator.init();
+              location.href = '/?masuk';
+            } catch (error) {
               await Swal.fire({
                 title: 'Error !',
-                text: 'Cek kembali username dan password kamu',
+                text: 'Cek kembali email dan password kamu',
                 icon: 'error',
                 confirmButtonColor: '#4caf50',
               });
-            } else {
-              await FullLoadingInitiator.init();
-              location.href = '/?masuk';
             }
           }
         } else {
@@ -282,18 +282,17 @@ const HeaderInitiator = {
                 password,
               };
 
-              const daftarStatus = await User.daftar(user);
-
-              if (daftarStatus === 'error') {
+              try {
+                await User.daftar(user);
+                await FullLoadingInitiator.init();
+                location.href = '/?masuk';
+              } catch (error) {
                 await Swal.fire({
-                  title: 'Error !',
-                  text: 'Cek kembali username dan password kamu',
+                  title: 'Gagal !',
+                  text: 'Email sudah terdaftar.',
                   icon: 'error',
                   confirmButtonColor: '#4caf50',
                 });
-              } else {
-                await FullLoadingInitiator.init();
-                location.href = '/?masuk';
               }
             } else {
               await Swal.fire({

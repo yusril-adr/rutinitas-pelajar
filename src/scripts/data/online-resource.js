@@ -2,37 +2,29 @@ import API_ENDPOINT from '../global/api-endpoint';
 
 const OnlineResource = {
   async daftar(user) {
-    try {
-      const request = await fetch(API_ENDPOINT.DAFTAR, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user),
-      });
+    const request = await fetch(API_ENDPOINT.DAFTAR, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    });
 
-      const response = await request.json();
-      if (response.status === 'error') return new Error(response.message);
+    const response = await request.json();
+    if (response.status === 'error') throw new Error(response.message);
 
-      return response;
-    } catch (error) {
-      return error;
-    }
+    return response;
   },
 
   async login(user) {
-    try {
-      const request = await fetch(API_ENDPOINT.MASUK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user),
-      });
+    const request = await fetch(API_ENDPOINT.MASUK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    });
 
-      const response = await request.json();
-      if (response.status === 'error') return new Error(response.message);
+    const response = await request.json();
+    if (response.status === 'error') throw new Error(response.message);
 
-      return response;
-    } catch (error) {
-      return error;
-    }
+    return response;
   },
 
   async isLogin() {
