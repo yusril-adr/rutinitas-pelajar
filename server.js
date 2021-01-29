@@ -56,9 +56,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('Database Connected.');
 
-  // Avoid to access directly to index.html
-  // app.get('/index.html', redirectToHome);
-
   app.use(express.static(path.resolve(__dirname, 'dist')));
 
   app.use('/', indexRoute);

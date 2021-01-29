@@ -12,11 +12,13 @@ const CONFIG = {
     'sabtu',
   ],
   SESSION_OPTIONS: {
+    name: 'pelajar_id',
     secret: process.env.SESSION_SECRET,
     resave: false,
+    rolling: true,
     saveUninitialized: process.env.MODE !== 'development',
     cookie: {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 1 Week
       sameSite: true,
     },
   },
