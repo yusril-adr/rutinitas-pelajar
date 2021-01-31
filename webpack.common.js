@@ -57,6 +57,10 @@ module.exports = {
             quality: 50,
           },
         },
+	{
+          from: path.resolve(__dirname, 'ssl/'),
+          to: path.resolve(__dirname, 'dist/ssl/'),
+        },
       ],
       overrideExtension: true,
     }),
