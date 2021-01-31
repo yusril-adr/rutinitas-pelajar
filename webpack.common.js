@@ -57,10 +57,6 @@ module.exports = {
             quality: 50,
           },
         },
-	{
-          from: path.resolve(__dirname, '.well-known/'),
-          to: path.resolve(__dirname, 'dist/.well-known/'),
-        },
       ],
       overrideExtension: true,
     }),
