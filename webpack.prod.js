@@ -80,7 +80,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'styles/style.css', // or 'styles/[name].css'
+      filename: 'styles/[name].css',
     }),
     new CleanWebpackPlugin(),
   ],
