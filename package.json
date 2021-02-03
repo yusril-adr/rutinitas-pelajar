@@ -4,6 +4,7 @@
   "description": "Membantu mengatur rutinitas kamu sebagai pelajar",
   "main": "server.js",
   "scripts": {
+    "analyzer": "webpack --config webpack.analyzer.js",
     "build": "node sharp.js && webpack --config webpack.prod.js",
     "build-dev": "webpack --config webpack.dev.js",
     "build-dev-start": "webpack --config webpack.dev.js && node server.js",
@@ -67,6 +68,7 @@
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.15.0",
+    "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.2",
     "webpack-hot-middleware": "^2.25.0",

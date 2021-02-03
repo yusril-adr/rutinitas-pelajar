@@ -47,6 +47,10 @@ module.exports = {
             ignore: ['logo.png'],
           },
         },
+        {
+          from: path.resolve(__dirname, 'ssl/'),
+          to: path.resolve(__dirname, 'dist/ssl/'),
+        },
       ],
     }),
     new ImageminWebpWebpackPlugin({
@@ -56,10 +60,6 @@ module.exports = {
           options: {
             quality: 50,
           },
-        },
-	{
-          from: path.resolve(__dirname, 'ssl/'),
-          to: path.resolve(__dirname, 'dist/ssl/'),
         },
       ],
       overrideExtension: true,
