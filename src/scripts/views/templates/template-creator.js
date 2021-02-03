@@ -154,7 +154,21 @@ const createHomePageTemplate = () => `
               <p>Apa yang ingin kamu lakukan hari ini ?</p>
             </div>
 
-            <img src="images/studying.png" alt="Studying Illustrattion">
+            <picture>
+              <source media="(max-width: 640px)" srcset="images/studying-small.webp">
+              <source media="(max-width: 1440px)" srcset="images/studying-medium.webp">
+              <source srcset="images/studying.webp">
+              <img
+                  src="images/studying.png"
+                  srcset="
+                      images/studying-small.png 495w,
+                      images/studying-medium.png 675w,
+                      images/studying.png 1080w
+                  "
+                  sizes="(max-width: 640px) 495px,(max-width: 1440px) 675px, 1080px"
+                  alt="Ilustrasi Belajar"
+              />
+           </picture>
           </div>
         </div>
       </div>
@@ -519,8 +533,15 @@ const createSimpanPageTemplate = () => `
 
               <ol>
                 <li>Di komputer, buka Chrome.</li>
-                <li>Buka situs yang ingin diinstal.</li>
-                <li>Di bagian kanan atas kolom URL, klik Instal <img src="images/tambah.png" alt="Tambah" title="Tambah" width="18" height="18">.</li>
+                <li>Buka Rutinitas Pelajar.</li>
+                <li>
+                  Di bagian kanan atas kolom URL, klik Instal 
+
+                  <picture>
+                    <source srcset="images/tambah.webp" width="18" height="18">
+                    <img src="images/tambah.png" alt="Tambah" title="Tambah" width="18" height="18">
+                  </picture>.
+                </li>
                 <li>Ikuti petunjuk di layar untuk menginstal.</li>
               </ol>
             </div>
@@ -535,8 +556,15 @@ const createSimpanPageTemplate = () => `
               <span class="card-title">Android</span>
 
               <ol>
-                <li>Pada perangkat Android, buka Chrome <img src="images/chrome.png" alt="Chrome" title="Chrome" width="18" height="18">.</li>
-                <li>Buka situs yang ingin diinstal.</li>
+                <li>
+                  Pada perangkat Android, buka Chrome 
+
+                  <picture>
+                    <source srcset="images/chrome.webp" width="18" height="18">
+                    <img src="images/chrome.png" alt="Chrome" title="Chrome" width="18" height="18">
+                  </picture>.
+                </li>
+                <li>Buka situs Rutinitas Pelajar.</li>
                 <li>Ketuk <strong>Tambahkan ke layar utama</strong>.</li>
                 <li>Ikuti petunjuk di layar untuk menginstal.</li>
               </ol>
