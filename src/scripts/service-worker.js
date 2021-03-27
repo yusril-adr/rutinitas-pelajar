@@ -9,7 +9,7 @@ clientsClaim();
 precacheAndRoute(self.__WB_MANIFEST);
 
 precacheAndRoute([
-  { url: '/index.html', revision: '1a' },
+  { url: '/index.html', revision: '1b' },
   { url: '/logo.png', revision: '1' },
 ]);
 

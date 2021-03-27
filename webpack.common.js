@@ -70,10 +70,10 @@ module.exports = {
             ignore: ['logo.png'],
           },
         },
-        // {
-        //   from: path.resolve(__dirname, 'ssl/'),
-        //   to: path.resolve(__dirname, 'dist/ssl/'),
-        // },
+        {
+          from: path.resolve(__dirname, 'ssl/'),
+          to: path.resolve(__dirname, 'dist/ssl/'),
+        },
       ],
     }),
     new ImageminWebpWebpackPlugin({

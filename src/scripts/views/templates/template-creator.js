@@ -363,7 +363,7 @@ const createNilaiRekapTemplate = (rekap) => `
         <li>
           <div class="rekap">
             <span class="rekap-kategori">Target nilai semester ini</span>
-            <span class="nilai-rekap">${rekap.target.nilai_now > 100 ? '<span class="red-text">-</span>' : rekap.target.nilai_now.toFixed(2)}</span>
+            <span class="nilai-rekap">${rekap.target.nilai_now > 100 ? `<span class="red-text">${rekap.target.nilai_now.toFixed(2)}</span>` : rekap.target.nilai_now.toFixed(2)}</span>
           </div>
           <hr>
         </li>
