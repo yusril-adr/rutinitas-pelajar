@@ -122,6 +122,7 @@ firebase-debug
 .firebaserc
 
 # other
+ssl/
 logo/
 src/images/**-small*
 src/images/**-medium*

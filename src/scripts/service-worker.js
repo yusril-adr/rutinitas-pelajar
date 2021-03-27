@@ -24,6 +24,7 @@ const navigationRoute = new NavigationRoute(handler, {
     /\/pengaturan(\/)?/,
   ],
   denylist: [
+    /\/api(\/)?../,
     /\/tugas(\/)?../,
     /\/resolusi(\/)?../,
     /\/simpan(\/)?../,

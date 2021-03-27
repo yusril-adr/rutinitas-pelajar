@@ -114,7 +114,7 @@ const nilaiVerb = {
           const [namaPelajaran, nilaiPelajaran] = value;
 
           nilai.nama = namaPelajaran;
-          nilai.nilai = nilaiPelajaran;
+          nilai.nilai = parseInt(nilaiPelajaran);
 
           await Nilai.putNilai(nilai);
           await this._renderList();
