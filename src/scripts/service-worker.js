@@ -9,8 +9,8 @@ clientsClaim();
 precacheAndRoute(self.__WB_MANIFEST);
 
 precacheAndRoute([
-  { url: '/index.html', revision: '1b' },
-  { url: '/logo.png', revision: '1' },
+  { url: '/index.html', revision: '1.0' },
+  { url: '/logo.png', revision: '1.0' },
 ]);
 
 const handler = createHandlerBoundToURL('/index.html');

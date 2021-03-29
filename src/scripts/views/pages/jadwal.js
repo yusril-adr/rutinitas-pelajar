@@ -49,9 +49,9 @@ const jadwal = {
       }
 
       container.appendChild(dayElement);
-      section.innerHTML = '';
-      section.appendChild(container);
     });
+    section.innerHTML = '';
+    section.appendChild(container);
   },
 };
 

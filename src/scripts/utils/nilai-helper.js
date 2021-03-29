@@ -37,9 +37,17 @@ const NilaiHelper = {
 
   async _getTotalNilai(list = undefined) {
     const listNilai = list || await Nilai.getAllNilai() || [];
-    const total = await listNilai.reduce((a, b) => a + (b.nilai || 0), 0);
+    const listSemester = await this.getSemesterValue() || [];
 
-    const mean = total / listNilai.length;
+    let total = 0;
+    listSemester.forEach(async (semester) => {
+      const filteredNilai = listNilai.filter((nilai) => nilai.semester === semester);
+      const meanSemester = await filteredNilai.reduce((a, b) => a + (b.nilai || 0), 0);
+      total += meanSemester / filteredNilai.length;
+    });
+
+    const semesterNow = await this.getSemesterNow();
+    const mean = total / semesterNow;
     return mean > 0 ? mean : 0;
   },
 
