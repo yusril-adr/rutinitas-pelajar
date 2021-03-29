@@ -23,15 +23,11 @@ const jadwal = {
 
     const container = document.createElement('div');
     container.classList.add('jadwal-container');
-    container.classList.add('row');
 
     const dayName = CONFIG.DATE.DAY.filter((day) => day !== 'Minggu');
 
     dayName.forEach(async (day) => {
       const dayElement = document.createElement('div');
-      dayElement.classList.add('col');
-      dayElement.classList.add('s12');
-      dayElement.classList.add('m6');
       dayElement.id = day.toLowerCase();
       dayElement.innerHTML = createJadwalDayTemplate(day);
 

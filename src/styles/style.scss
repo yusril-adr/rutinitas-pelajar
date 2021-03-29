@@ -200,6 +200,14 @@ input[type="number"].swal2-input {
   }
 }
 
+.jadwal-container,
+.nilai-container,
+.resolusi-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.25rem;
+}
+
 // Home page
 main.home {
   padding-top: 0;
@@ -549,7 +557,13 @@ main.pengaturan {
 }
 
 // Responsive
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 601px) {
+  .jadwal-container,
+  .nilai-container,
+  .resolusi-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   // Home page
   main.home {
     .jumbotron img {

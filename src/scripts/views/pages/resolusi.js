@@ -27,14 +27,10 @@ const resolusi = {
     section.innerHTML = '';
     if (list.length > 0) {
       const container = document.createElement('div');
-      container.classList.add('row');
       container.classList.add('resolusi-container');
 
       await list.forEach((resolusiItem) => {
         const resolusiElement = document.createElement('div');
-        resolusiElement.classList.add('col');
-        resolusiElement.classList.add('s12');
-        resolusiElement.classList.add('m6');
         resolusiElement.classList.add('resolusi');
 
         if (tercapai) resolusiElement.innerHTML = createResolusiTercapaiTemplate(resolusiItem);

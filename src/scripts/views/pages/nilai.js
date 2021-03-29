@@ -23,7 +23,6 @@ const nilai = {
 
     const container = document.createElement('div');
     container.classList.add('nilai-container');
-    container.classList.add('row');
 
     const nilaiList = await Nilai.getAllNilai();
     const semesterList = (await NilaiHelper.getSemesterValue(nilaiList)).sort().reverse();
@@ -31,18 +30,12 @@ const nilai = {
     // Render rekap card
     const rekap = await NilaiHelper.getRekap(nilaiList);
     const rekapElement = document.createElement('div');
-    rekapElement.classList.add('col');
-    rekapElement.classList.add('s12');
-    rekapElement.classList.add('m6');
     rekapElement.innerHTML = createNilaiRekapTemplate(rekap);
     await container.appendChild(rekapElement);
 
     // Render semester card
     await semesterList.forEach(async (semester) => {
       const semesterElement = document.createElement('div');
-      semesterElement.classList.add('col');
-      semesterElement.classList.add('s12');
-      semesterElement.classList.add('m6');
       semesterElement.innerHTML = createNilaiSemesterTemplate(semester);
 
       const listPelajaranElement = semesterElement.querySelector('ul.list-pelajaran');
