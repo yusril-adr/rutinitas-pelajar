@@ -126,4 +126,3 @@ ssl/
 logo/
 src/images/**-small*
 src/images/**-medium*
-package-lock.json
